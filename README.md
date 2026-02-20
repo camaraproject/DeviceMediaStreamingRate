@@ -1,21 +1,21 @@
-<a href="https://github.com/camaraproject/DeviceQualityIndicator/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/camaraproject/DeviceQualityIndicator?style=plastic"></a>
-<a href="https://github.com/camaraproject/DeviceQualityIndicator/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/camaraproject/DeviceQualityIndicator?style=plastic"></a>
-<a href="https://github.com/camaraproject/DeviceQualityIndicator/pulls" title="Open Pull Requests"><img src="https://img.shields.io/github/issues-pr/camaraproject/DeviceQualityIndicator?style=plastic"></a>
-<a href="https://github.com/camaraproject/DeviceQualityIndicator/graphs/contributors" title="Contributors"><img src="https://img.shields.io/github/contributors/camaraproject/DeviceQualityIndicator?style=plastic"></a>
-<a href="https://github.com/camaraproject/DeviceQualityIndicator" title="Repo Size"><img src="https://img.shields.io/github/repo-size/camaraproject/DeviceQualityIndicator?style=plastic"></a>
-<a href="https://github.com/camaraproject/DeviceQualityIndicator/blob/main/LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=plastic"></a>
-<a href="https://github.com/camaraproject/DeviceQualityIndicator/releases/latest" title="Latest Release"><img src="https://img.shields.io/github/release/camaraproject/DeviceQualityIndicator?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/camaraproject/DeviceMediaStreamingRate?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/camaraproject/DeviceMediaStreamingRate?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate/pulls" title="Open Pull Requests"><img src="https://img.shields.io/github/issues-pr/camaraproject/DeviceMediaStreamingRate?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate/graphs/contributors" title="Contributors"><img src="https://img.shields.io/github/contributors/camaraproject/DeviceMediaStreamingRate?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate" title="Repo Size"><img src="https://img.shields.io/github/repo-size/camaraproject/DeviceMediaStreamingRate?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate/blob/main/LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=plastic"></a>
+<a href="https://github.com/camaraproject/DeviceMediaStreamingRate/releases/latest" title="Latest Release"><img src="https://img.shields.io/github/release/camaraproject/DeviceMediaStreamingRate?style=plastic"></a>
 <a href="https://github.com/camaraproject/Governance/blob/main/ProjectStructureAndRoles.md" title="Sandbox API Repository"><img src="https://img.shields.io/badge/Sandbox%20API%20Repository-yellow?style=plastic"></a>
 
-# DeviceQualityIndicator
+# DeviceMediaStreamingRate
 
-Sandbox API Repository to describe, develop, document, and test the DeviceQualityIndicator API within the Sub Project [DeviceStatus](https://lf-camaraproject.atlassian.net/wiki/x/6wApBQ) of CAMARA
+Sandbox API Repository to describe, develop, document, and test the DeviceMediaStreamingRate API within the Sub Project [DeviceStatus](https://lf-camaraproject.atlassian.net/wiki/x/6wApBQ) of CAMARA
 
 * API Repository [wiki page](https://lf-camaraproject.atlassian.net/wiki/x/GQCbBQ)
 
 ## Scope
 
-* Service API “DeviceQualityIndicator” (see [APIBacklog.md](https://github.com/camaraproject/APIBacklog/blob/main/documentation/APIbacklog.md))
+* Service API “DeviceMediaStreamingRate” (see [APIBacklog.md](https://github.com/camaraproject/APIBacklog/blob/main/documentation/APIbacklog.md))
 * The API provides the customer with the ability to:  
   * Get insights about the network status of a defined mobile device.
   * For this the API will return an indicator which is bundeling information about the device network status such as availibilty, open datavolume, congjestion, historical congjestion or the connecitvity status (2G, 3G, 4G, 5G).
