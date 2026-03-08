@@ -82,7 +82,7 @@ externalDocs:
   url: https://github.com/camaraproject/DeviceQualityIndicator
 
 servers:
-  - url: "{apiRoot}/media-streaming-rate/wip"
+  - url: "{apiRoot}/media-streaming-rate/vwip"
     variables:
       apiRoot:
         default: http://localhost:8087
