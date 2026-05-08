@@ -40,10 +40,10 @@ apis:
       - maxl2287
       - sachinvodafone
       - maheshc01
-  - api_name: media-streaming-rate-subscriptions
-    target_api_version: 0.1.0
-    target_api_status: draft
-    main_contacts:
-      - maxl2287
-      - sachinvodafone
-      - maheshc01
+#  - api_name: media-streaming-rate-subscriptions
+#    target_api_version: 0.1.0
+#    target_api_status: alpha
+#    main_contacts:
+#      - maxl2287
+#      - sachinvodafone
+#      - maheshc01
