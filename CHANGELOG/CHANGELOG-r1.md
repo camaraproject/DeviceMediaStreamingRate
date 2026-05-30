@@ -65,7 +65,7 @@ The API definition(s) are based on
 
 ## media-streaming-rate 0.1.0-alpha.1
 
-**media-streaming-rate 0.1.0-alpha.1 is ...**
+**media-streaming-rate 0.1.0-alpha.1 is the first alpha release of this API**
 
 - API definition **with inline documentation**:
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/r1.1/code/API_definitions/media-streaming-rate.yaml&nocors)
@@ -74,19 +74,19 @@ The API definition(s) are based on
 
 ### Added
 
-* _To be filled during release review_
+* Initial alpha release of media-streaming-rate v0.1.0-alpha.1 by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/11
 
 ### Changed
 
-* _To be filled during release review_
+* None — first release
 
 ### Fixed
 
-* _To be filled during release review_
+* None — first release
 
 ### Removed
 
-* _To be filled during release review_
+* None — first release
 
 **Full Changelog**: https://github.com/camaraproject/DeviceMediaStreamingRate/commits/r1.1
 
