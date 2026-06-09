@@ -102,10 +102,8 @@ servers:
   - url: "{apiRoot}/media-streaming-rate/vwip"
     variables:
       apiRoot:
-        default: http://localhost:8087
-        description: |
-          API root, defined by service provider, e.g.
-          `api.example.com` or `api.example.com/somepath`
+        default: http://localhost:9091
+        description: API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`
 
 tags:
   - name: Media Streaming Rate
