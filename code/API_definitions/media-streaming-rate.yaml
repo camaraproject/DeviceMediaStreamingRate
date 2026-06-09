@@ -168,6 +168,7 @@ components:
     openId:
       $ref: "../common/CAMARA_common.yaml#/components/securitySchemes/openId"
 
+  schemas:
     MediaStreamingRateRequest:
       type: object
       description: Defines the request body parameters
@@ -180,7 +181,7 @@ components:
       description: The maximum downstream media streaming bit rate supported for the device.
       properties:
         device:
-          $ref: "#/components/schemas/DeviceResponse"
+          $ref: "../common/CAMARA_common.yaml#/components/schemas/DeviceResponse"
         maxDownstreamMediaBitRateSupported:
           type: integer
           description: The maximum downstream bit rate supported for the device
