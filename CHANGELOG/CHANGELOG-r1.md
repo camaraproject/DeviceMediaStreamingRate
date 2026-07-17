@@ -81,7 +81,7 @@ The API definition(s) are based on
 
 ### Added
 
-* N/A
+* Initial alpha release of media-streaming-rate 0.1.0-alpha.1
 
 ### Changed
 
