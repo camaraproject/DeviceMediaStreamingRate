@@ -81,7 +81,7 @@ The API definition(s) are based on
 
 ### Added
 
-* Initial alpha release of media-streaming-rate 0.1.0-alpha.1
+* Initial yaml spec for device max bitrate by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/11
 
 ### Changed
 
