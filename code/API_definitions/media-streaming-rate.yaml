@@ -42,7 +42,7 @@ info:
 
     The diagram below illustrates how the Media Streaming Rate API is used in a typical media streaming application:
 
-    ![Media Streaming Rate API Sequence Diagram](../../documentation/SupportingDocuments/media-rate-sequence-flow.png)
+    ![Media Streaming Rate API Sequence Diagram](https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/main/documentation/SupportingDocuments/media-rate-sequence-flow.png)`
 
     # Token usage: two-legged vs three-legged
 
