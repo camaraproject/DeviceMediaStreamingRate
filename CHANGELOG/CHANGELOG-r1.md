@@ -82,7 +82,7 @@ The API definition(s) are based on
 
 ### Added
 
-* N/A
+* Initial yaml spec for device max bitrate by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/11
 
 ### Changed
 
