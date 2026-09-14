@@ -2,7 +2,7 @@ repository:
   repository_name: DeviceMediaStreamingRate
   release_tag: r1.1
   release_type: pre-release-alpha
-  release_date: null
+  release_date: '2026-09-14T16:17:00Z'
   src_commit_sha: 928b9150a2db04291a8bcf25e196bcb2b38a2553
 apis:
 - api_name: media-streaming-rate
