@@ -16,10 +16,10 @@ Sandbox API Repository to describe, develop, document, and test the DeviceMediaS
 ## Scope
 
 * Service API “DeviceMediaStreamingRate” (see [APIBacklog.md](https://github.com/camaraproject/APIBacklog/blob/main/documentation/APIbacklog.md))
-* The API provides the customer with the ability to:  
-  * Get insights about the network status of a defined mobile device.
-  * For this the API will return an indicator which is bundeling information about the device network status such as availibilty, open datavolume, congjestion, historical congjestion or the connecitvity status (2G, 3G, 4G, 5G).
-  * This API would be useful for applications that optimize user experience based on the connecitvity status of a defined device.
+* The API provides the API consumer with the ability to:
+  * Retrieve the maximum downstream media streaming rate that the network allows for a given device.
+  * The returned value is the rate the network enforces for media traffic to the device, not a measurement or forecast of the throughput the device will actually experience.
+  * This API is useful for media streaming applications using adaptive bitrate protocols (e.g. DASH, HLS), which can select a media representation that fits within the permitted rate before the media session starts, avoiding buffering and network policing.
 * Describe, develop, document, and test the APIs
 * Started: August 2024
 
