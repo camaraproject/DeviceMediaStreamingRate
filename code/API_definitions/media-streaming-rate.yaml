@@ -4,57 +4,52 @@ info:
   version: wip
   x-camara-commonalities: wip
   description: |
-    This is a media streaming rate service API that allows application developers to retrieve
-    the maximum media streaming bit rate supported for a given device.
+    The Media Streaming Rate API allows an application developer to retrieve the maximum
+    downstream media streaming rate that the network allows for a given device.
 
     # Introduction
-      The Media Streaming Rate API allows an application developer to query the network
-      for the maximum supported media streaming bit rate for a specific end user device.
-      This API measures device connection quality by determining the maximum downstream
-      data rate available for media streaming, which is influenced by factors such as
-      network conditions, device capabilities, and current network congestion.
 
-      This information helps developers ensure their media streaming applications can provide
-      optimal quality while using the current network connection, enabling adaptive bitrate
-      streaming and preventing buffering issues.
+    Media streaming applications using adaptive bitrate protocols such as DASH or HLS select a media
+    representation (resolution and bit rate) from a manifest. Without knowing the limit that the
+    network applies to media traffic for a device, the application may select a representation that
+    the network will not deliver, resulting in buffering, packet loss and degraded quality, or the
+    network may need to police the media traffic down to the permitted rate.
+
+    This API exposes that limit to the application before the media session starts, so the
+    application can select a representation that fits within it.
+
+    ## Definition of the maximum downstream media streaming rate
+
+    The value returned by this API is the **maximum downstream media streaming rate that the network
+    allows for the device**, as enforced by the network for media traffic (for example through
+    policing). It is not a measurement or a forecast of the throughput the device will actually
+    experience, which may be lower. Applications should use it as the upper bound when selecting a
+    media representation.
 
     # API functionality
 
     Prerequisite: authorisation and authentication
 
     Usage:
-      1. Request: POST `retrieve-maximum-downstream-media-rate`, passing device identification
-         information such as IP address, phone number, or network access identifier.
-      2. Response: The network will return the maximum downstream media streaming bit rate supported
-         for the device along with the unit of measurement.
+      1. Request: POST `retrieve-maximum-downstream-media-rate`, identifying the device either
+         through the access token or by providing the `device` object in the request body.
+      2. Response: The maximum downstream media streaming rate permitted for the device, as a rate
+         value and unit.
 
-    # Usage in Media Streaming Applications
+    # Usage in media streaming applications
 
-    This API can be integrated into media streaming applications to determine optimal
-    video resolution for streaming. A typical workflow:
+    A typical workflow:
 
-    1. Application client requests manifest file (DASH/HLS) from CDN server
-    2. Application client calls Media Streaming Rate API to get maximum supported bit rate
-    3. Based on the response, application selects appropriate media resolution from the manifest
-    4. Application begins media streaming from CDN using the optimal resolution
+    1. The application client requests the manifest file (DASH/HLS) from the CDN server.
+    2. The application client calls this API to obtain the maximum downstream media streaming rate
+       permitted for the device.
+    3. Based on the response, the application selects a media representation from the manifest
+       whose bit rate does not exceed the returned value.
+    4. The application starts media streaming from the CDN using the selected representation.
 
-    This approach ensures the best possible viewing experience while preventing buffering or quality issues.
+    The diagram below illustrates this workflow:
 
-    The diagram below illustrates how the Media Streaming Rate API is used in a typical media streaming application:
-
-    ![Media Streaming Rate API Sequence Diagram](https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/main/documentation/SupportingDocuments/media-rate-sequence-flow.png)`
-
-    # Token usage: two-legged vs three-legged
-
-    This API supports two types of access tokens:
-
-    - **Two-legged token**: Used for server-to-server calls. The device to be queried MUST be identified by providing the `device` object in the request body.
-    - **Three-legged token**: Used for user-authenticated calls. The device is identified from the access token itself, and the `device` object MUST NOT be provided in the request.
-
-    If a two-legged token is used and the device object is missing, the API will return a `422 MISSING_IDENTIFIER` error.
-    If a three-legged token is used and the device object is provided, the API will return a `422 UNNECESSARY_IDENTIFIER` error.
-
-    This approach ensures clarity and security in device identification, and aligns with CAMARA API standards.
+    ![Media Streaming Rate API Sequence Diagram](https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/main/documentation/SupportingDocuments/media-rate-sequence-flow.png)
 
     <!-- CAMARA:MANDATORY:authorization-and-authentication:BEGIN -->
 
@@ -106,8 +101,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 
 externalDocs:
-  description: Product documentation
-  url: https://github.com/camaraproject/DeviceQualityIndicator
+  description: Product documentation at CAMARA
+  url: https://github.com/camaraproject/DeviceMediaStreamingRate
 
 servers:
   - url: "{apiRoot}/media-streaming-rate/vwip"
@@ -119,7 +114,7 @@ servers:
 tags:
   - name: Media Streaming Rate
     description: |
-      Retrieve the maximum media streaming bit rate supported for a given device.
+      Retrieve the maximum downstream media streaming rate permitted for a given device.
 
 paths:
   /retrieve-maximum-downstream-media-rate:
@@ -131,17 +126,18 @@ paths:
         - Media Streaming Rate
       summary: Get maximum downstream media streaming rate
       description: |
-        Retrieve the maximum downstream media streaming rate for a device. This helps application
-        developers determine the optimal media quality settings for their applications.
+        Retrieve the maximum downstream media streaming rate that the network permits for a device.
+        This helps application developers select a media representation that fits within the
+        network limit for the device.
 
-        When using a two-legged token, the device object MUST be provided.
-        When using a three-legged token, the device object MUST NOT be provided as
-        the device information will be extracted from the token.
+        When using a two-legged access token, the `device` object MUST be provided.
+        When using a three-legged access token, the `device` object MUST NOT be provided, as the
+        device is identified from the access token.
       operationId: retrieveMaximumDownstreamMediaRate
       parameters:
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
       requestBody:
-        description: Device information needed to determine media rate capabilities.
+        description: Device information needed to determine the permitted media streaming rate.
         content:
           application/json:
             schema:
@@ -158,56 +154,250 @@ paths:
               schema:
                 $ref: "#/components/schemas/MediaStreamingRateResponse"
         "400":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
+          $ref: "#/components/responses/Generic400"
         "401":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic401"
+          $ref: "#/components/responses/Generic401"
         "403":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
+          $ref: "#/components/responses/Generic403"
         "404":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic404"
+          $ref: "#/components/responses/Generic404"
         "422":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic422"
+          $ref: "#/components/responses/Generic422"
         "429":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic429"
-        "503":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
+          $ref: "#/components/responses/Generic429"
 
 components:
   securitySchemes:
     openId:
       $ref: "../common/CAMARA_common.yaml#/components/securitySchemes/openId"
 
+  responses:
+    Generic400:
+      description: Bad Request
+      headers:
+        x-correlator:
+          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 400
+                  code:
+                    enum:
+                      - INVALID_ARGUMENT
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+
+    Generic401:
+      description: Unauthorized
+      headers:
+        x-correlator:
+          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 401
+                  code:
+                    enum:
+                      - UNAUTHENTICATED
+          examples:
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated and a new authentication is required
+              value:
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
+
+    Generic403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 403
+                  code:
+                    enum:
+                      - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+
+    Generic404:
+      description: Not found
+      headers:
+        x-correlator:
+          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 404
+                  code:
+                    enum:
+                      - IDENTIFIER_NOT_FOUND
+          examples:
+            GENERIC_404_IDENTIFIER_NOT_FOUND:
+              description: Some identifier cannot be matched to a device
+              value:
+                status: 404
+                code: IDENTIFIER_NOT_FOUND
+                message: Device identifier not found.
+
+    Generic422:
+      description: Unprocessable Content
+      headers:
+        x-correlator:
+          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 422
+                  code:
+                    enum:
+                      - SERVICE_NOT_APPLICABLE
+                      - MISSING_IDENTIFIER
+                      - UNSUPPORTED_IDENTIFIER
+                      - UNNECESSARY_IDENTIFIER
+          examples:
+            GENERIC_422_SERVICE_NOT_APPLICABLE:
+              description: Service not applicable for the provided identifier
+              value:
+                status: 422
+                code: SERVICE_NOT_APPLICABLE
+                message: The service is not available for the provided identifier.
+            GENERIC_422_MISSING_IDENTIFIER:
+              description: An identifier is not included in the request and the device identification cannot be derived from the 3-legged access token
+              value:
+                status: 422
+                code: MISSING_IDENTIFIER
+                message: The device cannot be identified.
+            GENERIC_422_UNSUPPORTED_IDENTIFIER:
+              description: None of the provided identifiers is supported by the implementation
+              value:
+                status: 422
+                code: UNSUPPORTED_IDENTIFIER
+                message: The identifier provided is not supported.
+            GENERIC_422_UNNECESSARY_IDENTIFIER:
+              description: An explicit identifier is provided when a device has already been identified from the access token
+              value:
+                status: 422
+                code: UNNECESSARY_IDENTIFIER
+                message: The device is already identified by the access token.
+
+    Generic429:
+      description: Too Many Requests
+      headers:
+        x-correlator:
+          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 429
+                  code:
+                    enum:
+                      - QUOTA_EXCEEDED
+                      - TOO_MANY_REQUESTS
+          examples:
+            GENERIC_429_QUOTA_EXCEEDED:
+              description: Request is rejected due to exceeding a business quota limit
+              value:
+                status: 429
+                code: QUOTA_EXCEEDED
+                message: Out of resource quota.
+            GENERIC_429_TOO_MANY_REQUESTS:
+              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
+              value:
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rate limit reached.
+
   schemas:
     MediaStreamingRateRequest:
       type: object
-      description: Defines the request body parameters
+      description: Request body identifying the device for which the permitted media streaming rate is retrieved.
       properties:
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/Device"
 
     MediaStreamingRateResponse:
       type: object
-      description: The maximum downstream media streaming bit rate supported for the device.
+      description: The maximum downstream media streaming rate permitted for the device.
       properties:
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/DeviceResponse"
-        maxDownstreamMediaBitRateSupported:
+        maxDownstreamMediaRate:
+          $ref: "#/components/schemas/Rate"
+      required:
+        - maxDownstreamMediaRate
+
+    Rate:
+      description: Specification of rate
+      type: object
+      properties:
+        value:
+          description: Quantity of rate
           type: integer
-          description: The maximum downstream bit rate supported for the device
           example: 10
           format: int32
           minimum: 0
           maximum: 1024
         unit:
-          type: string
-          description: The unit of the bit rate (e.g., Mbps, Kbps)
-          example: "Mbps"
-          enum:
-            - bps
-            - kbps
-            - Mbps
-            - Gbps
-            - Tbps
+          $ref: "#/components/schemas/RateUnitEnum"
       required:
-        - maxDownstreamMediaBitRateSupported
+        - value
         - unit
+
+    RateUnitEnum:
+      description: Units of rate
+      type: string
+      enum:
+        - bps
+        - kbps
+        - Mbps
+        - Gbps
+        - Tbps
