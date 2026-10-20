@@ -161,7 +161,7 @@ Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximu
     Then the response status code is 422
     And the response property "$.status" is 422
     And the response property "$.code" is "UNNECESSARY_IDENTIFIER"
-    And the response property "$.message" contains a user friendly text
+    And the response property "$.message" contains a user-friendly text
 
   @device_media_streaming_rate_C01.05_missing_device
   Scenario: Device not included and cannot be deduced from the access token
@@ -171,7 +171,7 @@ Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximu
     Then the response status code is 422
     And the response property "$.status" is 422
     And the response property "$.code" is "MISSING_IDENTIFIER"
-    And the response property "$.message" contains a user friendly text
+    And the response property "$.message" contains a user-friendly text
 
   @device_media_streaming_rate_C01.06_unsupported_device
   Scenario: None of the provided device identifiers is supported by the implementation
@@ -182,7 +182,7 @@ Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximu
     Then the response status code is 422
     And the response property "$.status" is 422
     And the response property "$.code" is "UNSUPPORTED_IDENTIFIER"
-    And the response property "$.message" contains a user friendly text
+    And the response property "$.message" contains a user-friendly text
 
   # When the service is only offered to certain types of devices or subscriptions, e.g. IoT, B2C, etc.
   @device_media_streaming_rate_C01.07_device_not_supported
@@ -193,7 +193,7 @@ Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximu
     Then the response status code is 422
     And the response property "$.status" is 422
     And the response property "$.code" is "SERVICE_NOT_APPLICABLE"
-    And the response property "$.message" contains a user friendly text
+    And the response property "$.message" contains a user-friendly text
 
   ##########################
   # 401 - Authentication errors
@@ -241,4 +241,32 @@ Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximu
     Then the response status code is 403
     And the response property "$.status" is 403
     And the response property "$.code" is "PERMISSION_DENIED"
+    And the response property "$.message" contains a user friendly text
+
+  ##########################
+  # 429 - Too many requests
+  ##########################
+
+  # To test this scenario the environment has to be configured to reject requests reaching the threshold limit set.
+  @device_media_streaming_rate_429.1_too_many_requests
+  Scenario: Request is rejected due to threshold policy
+    Given a valid request for "retrieveMaximumDownstreamMediaRate"
+    And the header "Authorization" is set to a valid access token
+    And the threshold of requests has been reached
+    When the request "retrieveMaximumDownstreamMediaRate" is sent
+    Then the response status code is 429
+    And the response property "$.status" is 429
+    And the response property "$.code" is "TOO_MANY_REQUESTS"
+    And the response property "$.message" contains a user friendly text
+
+  # To test this scenario the environment has to be configured with a business quota for the API consumer that has been exhausted.
+  @device_media_streaming_rate_429.2_quota_exceeded
+  Scenario: Request is rejected due to exceeded business quota
+    Given a valid request for "retrieveMaximumDownstreamMediaRate"
+    And the header "Authorization" is set to a valid access token
+    And the business quota for the API consumer has been exceeded
+    When the request "retrieveMaximumDownstreamMediaRate" is sent
+    Then the response status code is 429
+    And the response property "$.status" is 429
+    And the response property "$.code" is "QUOTA_EXCEEDED"
     And the response property "$.message" contains a user friendly text
