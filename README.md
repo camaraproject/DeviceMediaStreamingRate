@@ -31,9 +31,9 @@ Sandbox API Repository to describe, develop, document, and test the DeviceMediaS
 > [!NOTE]
 > This repository has only pre-release versions available yet. Pre-releases are for testing and may change before public release.
 
-* The latest pre-release is [r1.1](https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1) (alpha), with the following API versions:
-  * **media-streaming-rate 0.1.0-alpha.1**
-  [[YAML]](https://github.com/camaraproject/DeviceMediaStreamingRate/blob/r1.1/code/API_definitions/media-streaming-rate.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/r1.1/code/API_definitions/media-streaming-rate.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/r1.1/code/API_definitions/media-streaming-rate.yaml)
+* The latest pre-release is [r1.2](https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.2) (release candidate), with the following API versions:
+  * **device-media-streaming-rate 0.1.0-rc.1**
+  [[YAML]](https://github.com/camaraproject/DeviceMediaStreamingRate/blob/r1.2/code/API_definitions/device-media-streaming-rate.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/r1.2/code/API_definitions/device-media-streaming-rate.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/DeviceMediaStreamingRate/r1.2/code/API_definitions/device-media-streaming-rate.yaml)
 
 * For changes see [CHANGELOG](https://github.com/camaraproject/DeviceMediaStreamingRate/tree/main/CHANGELOG)
 

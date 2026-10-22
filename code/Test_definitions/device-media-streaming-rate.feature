@@ -1,4 +1,4 @@
-Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximumDownstreamMediaRate
+Feature: CAMARA Device Media Streaming Rate API, v0.1.0-rc.1 - Operation retrieveMaximumDownstreamMediaRate
 
   # Input to be provided by the implementation to the tester
   #
@@ -22,7 +22,7 @@ Feature: CAMARA Device Media Streaming Rate API, vwip - Operation retrieveMaximu
 
   Background: Common Device Media Streaming Rate setup
     Given an environment at "apiRoot"
-    And the resource "/device-media-streaming-rate/vwip/retrieve-maximum-downstream-media-rate"
+    And the resource "/device-media-streaming-rate/v0.1rc1/retrieve-maximum-downstream-media-rate"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
