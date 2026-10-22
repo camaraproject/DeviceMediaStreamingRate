@@ -85,23 +85,29 @@ The API definition(s) are based on
 
 ### Breaking changes
 
-* N/A
+* API renamed from `media-streaming-rate` (0.1.0-alpha.1 in r1.1) to `device-media-streaming-rate`, to match the repository name: API definition file, `info.title`, server URL, scope `device-media-streaming-rate:retrieve-maximum-downstream-media-rate` and schema names by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/50
+* Response properties `maxDownstreamMediaBitRateSupported` and `unit` replaced by `maxDownstreamMediaRate`, using the `Rate` and `RateUnitEnum` schemas from QualityOnDemand (`value` and `unit`) by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
 
 ### Added
 
-* N/A
+* Added test definitions covering success cases, request validation, the Commonalities C01 device identifier errors, 401 and 403 by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
+* Added 429 test scenarios for `TOO_MANY_REQUESTS` and `QUOTA_EXCEEDED` by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/54
+* Added a definition of the returned value to the API description: the maximum downstream media streaming rate the network allows for the device, not a measurement or forecast of the throughput by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
 
 ### Changed
 
-* N/A
+* Synced with CAMARA Commonalities r4.4 / 0.9.0 (previously 0.8.0): error responses aligned with the r4.4 response catalogue, `info.description` mandatory sections updated by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/54
+* API renamed from `media-streaming-rate` (0.1.0-alpha.1 in r1.1) to `device-media-streaming-rate`, to match the repository name: API definition file, `info.title`, server URL, scope `device-media-streaming-rate:retrieve-maximum-downstream-media-rate` and schema names by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/50
+* Response properties `maxDownstreamMediaBitRateSupported` and `unit` replaced by `maxDownstreamMediaRate`, using the `Rate` and `RateUnitEnum` schemas from QualityOnDemand (`value` and `unit`) by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
+* Removed the "Token usage: two-legged vs three-legged" section of the API description, which duplicated the mandatory "Identifying the device from the access token" section by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
 
 ### Fixed
 
-* N/A
+* Corrected `externalDocs` to point to this repository, with the description "Product documentation at CAMARA" by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
 
 ### Removed
 
-* N/A
+* Removed `400 OUT_OF_RANGE`, `403 INVALID_TOKEN_CONTEXT`, `404 NOT_FOUND` and the `503` response, which are not applicable to this API by @maheshc01 in https://github.com/camaraproject/DeviceMediaStreamingRate/pull/47
 
 **Full Changelog**: https://github.com/camaraproject/DeviceMediaStreamingRate/commits/r1.2
 
