@@ -43,7 +43,7 @@ _The above section is automatically synchronized by CAMARA project-administratio
 ## Contributing
 * Meetings or Sub Project Device Status are held virtually 
     * Schedule: Bi-weekly on Friday, 14:00 UTC
-    * [Registration / Join]([https://wiki.camaraproject.org/x/TQAG](https://zoom-lfx.platform.linuxfoundation.org/meeting/94783050047?password=c43ff9fd-4c79-468a-9d98-45222dd6343d))
+    * [Registration / Join](https://app.lfx.dev/meetings/93413850406?password=3aeb0f1b-d9f9-42c5-91d8-3d2b20421ef1)
     * Minutes: Access [meeting minutes](https://wiki.camaraproject.org/display/CAM/DeviceStatus+Meeting+Minutes)
 * Mailing List
     * Subscribe / Unsubscribe to the mailing list of this Sub Project <https://lists.camaraproject.org/g/sp-dst>.
