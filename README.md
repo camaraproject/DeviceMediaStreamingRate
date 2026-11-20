@@ -42,7 +42,7 @@ _The above section is automatically synchronized by CAMARA project-administratio
 
 ## Contributing
 * Meetings or Sub Project Device Status are held virtually 
-    * Schedule: Bi-weekly on Wednesday, 11:00 CET/CEST (08:00 UTC, 09:00 UTC during European DST)
+    * Schedule: Bi-weekly on Friday, 14:00 UTC
     * [Registration / Join]([https://wiki.camaraproject.org/x/TQAG](https://zoom-lfx.platform.linuxfoundation.org/meeting/94783050047?password=c43ff9fd-4c79-468a-9d98-45222dd6343d))
     * Minutes: Access [meeting minutes](https://wiki.camaraproject.org/display/CAM/DeviceStatus+Meeting+Minutes)
 * Mailing List
